@@ -5,7 +5,7 @@ group :osx do
 end
 
 group :linux do
-  gem "rb-inotify"
+  gem "rb-inotify", "~> 0.8.8"
   gem "libnotify"
 end
 

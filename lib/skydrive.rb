@@ -7,6 +7,7 @@ module Skydrive
   class << self
 
     attr_accessor :client_id, :client_secret, :api_version, :ssl, :access_token, :locale
-
   end
+  require 'skydrive/oauth/client'
+  require 'skydrive/client'
 end
