@@ -17,5 +17,7 @@ module Skydrive
     def get url, options={}
       response = self.class.get(url, {:query => options}).parsed_response
     end
+
+    
   end
 end
