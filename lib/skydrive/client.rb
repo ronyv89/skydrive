@@ -8,7 +8,7 @@ module Skydrive
 
     def initialize access_token
       @access_token = access_token
-      self.class.default_params :access_token => @access_token
+      self.class.default_params :access_token => @access_token.token
     end
 
     # Do a 'get' request
