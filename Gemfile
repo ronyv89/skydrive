@@ -16,5 +16,3 @@ group :windows do
 end
 
 gemspec
-# Specify your gem's dependencies in skydrive.gemspec
-gemspec

@@ -18,6 +18,16 @@ module Skydrive
       response = self.class.get(url, {:query => options}).parsed_response
     end
 
-    
+    # Do a 'post' request
+    # @param [String] url the url to post
+    # @param [Hash] options Additonal options to be passed
+    def post url, options={}
+      response = self.class.post(url, {:body => options}).parsed_response
+    end
+
+    # Refresh the access token
+    def refresh_access_token!
+      access_token.refresh!
+    end
   end
 end
