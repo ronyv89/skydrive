@@ -13,4 +13,5 @@ module Skydrive
   require 'skydrive/object'
   require 'skydrive/user'
   require 'skydrive/file'
+  require 'skydrive/error'
 end

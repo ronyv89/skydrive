@@ -16,6 +16,8 @@ module Skydrive
     # @param [Hash] options Additonal options to be passed
     def get url, options={}
       response = self.class.get(url, {:query => options}).parsed_response
+      raise Skydrive::Error.new(response["error"]) if response["error"]
+      response
     end
 
     # Do a 'post' request
@@ -23,6 +25,7 @@ module Skydrive
     # @param [Hash] options Additonal options to be passed
     def post url, options={}
       response = self.class.post(url, {:body => options}).parsed_response
+      raise Skydrive::Error.new(response["error"]) if response["error"]
     end
 
     # Do a 'move' request
@@ -30,6 +33,7 @@ module Skydrive
     # @param [Hash] options Additonal options to be passed
     def move url, options={}  
       response = self.class.move(url, {:body => options}).parsed_response
+      raise Skydrive::Error.new(response["error"]) if response["error"]
     end
 
     # Refresh the access token

@@ -1,8 +1,9 @@
 module Skydrive
+  # The base class for all objects
   class Object
     attr_reader :object
-    def initialize json_object
-      @object = JSON.load(json_object)
+    def initialize data
+      @object = JSON.load(data)
     end
 
     # ID of the object
@@ -65,10 +66,14 @@ module Skydrive
       object["parent_id"]
     end
     
+    # Get json format object
+    # @return [String]
     def to_json
       object.to_json
     end
 
+    # Get the hash equivalent of the data
+    # @return [Hash]
     def to_hash
       object
     end
