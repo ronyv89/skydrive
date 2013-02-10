@@ -1,7 +1,7 @@
 module Skydrive
   # The client class
   class Client
-    attr_accessor :access_token
+    attr_reader :access_token
     include HTTMultiParty
     base_uri "https://apis.live.net/v5.0/"
     format :json
@@ -34,7 +34,9 @@ module Skydrive
 
     # Refresh the access token
     def refresh_access_token!
-      access_token.refresh!
+      @access_token = access_token.refresh!
+      self.class.default_params :access_token => @access_token.token
+      @access_token
     end
   end
 end

@@ -17,6 +17,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = Skydrive::VERSION
   gem.add_dependency 'httparty', '>= 0.10.2'
+  gem.add_dependency 'activesupport'
   gem.add_dependency 'httmultiparty'
   gem.add_dependency 'oauth2'
   gem.add_development_dependency "rspec"

@@ -10,4 +10,7 @@ module Skydrive
   end
   require 'skydrive/oauth/client'
   require 'skydrive/client'
+  require 'skydrive/object'
+  require 'skydrive/user'
+  require 'skydrive/file'
 end
