@@ -17,7 +17,7 @@ module Skydrive
     def get url, options={}
       response = self.class.get(url, {:query => options}).parsed_response
       raise Skydrive::Error.new(response["error"]) if response["error"]
-      response
+      response["data"] ? response["data"] : response
     end
 
     # Do a 'post' request
@@ -26,6 +26,7 @@ module Skydrive
     def post url, options={}
       response = self.class.post(url, {:body => options}).parsed_response
       raise Skydrive::Error.new(response["error"]) if response["error"]
+      response["data"] ? response["data"] : response
     end
 
     # Do a 'move' request
@@ -34,6 +35,7 @@ module Skydrive
     def move url, options={}  
       response = self.class.move(url, {:body => options}).parsed_response
       raise Skydrive::Error.new(response["error"]) if response["error"]
+      response["data"] ? response["data"] : response
     end
 
     # Refresh the access token
