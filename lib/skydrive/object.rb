@@ -3,7 +3,7 @@ module Skydrive
   class Object
     attr_reader :object
     def initialize data
-      @object = JSON.load(data)
+      @object = data
     end
 
     # ID of the object
@@ -24,7 +24,7 @@ module Skydrive
       object["name"]
     end
 
-    # Desciption of the obejct
+    # Desciption of the object
     # @return [String]
     def description
       object["description"]
@@ -66,6 +66,12 @@ module Skydrive
       object["parent_id"]
     end
     
+    # The object that contains permission info.
+    # @return [Hash]
+    def shared_with
+      object["shared_with"]
+    end
+
     # Get json format object
     # @return [String]
     def to_json
@@ -76,6 +82,12 @@ module Skydrive
     # @return [Hash]
     def to_hash
       object
+    end
+
+    # The object that contains permission info.
+    # @return [Hash]
+    def shared_with
+      object["shared_with"]
     end
   end
 end

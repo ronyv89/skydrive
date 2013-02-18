@@ -44,5 +44,16 @@ module Skydrive
       self.class.default_params :access_token => @access_token.token
       @access_token
     end
+
+    private
+    # Return a Skdrive::Object sub class
+    def object response
+      if response.is_a? Array
+        return response.collect{ |object| "Skydrive::#{object["type"].capitalize}"}
+      else
+        return "Skydrive::#{response["type"].capitalize}"
+      end
+    end
+
   end
 end
