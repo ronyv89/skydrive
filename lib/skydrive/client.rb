@@ -3,6 +3,7 @@ module Skydrive
   class Client
     attr_reader :access_token
     include HTTMultiParty
+    include Traverse
     base_uri "https://apis.live.net/v5.0/"
     format :json
 
@@ -17,7 +18,7 @@ module Skydrive
     def get url, options={}
       response = self.class.get(url, {:query => options}).parsed_response
       raise Skydrive::Error.new(response["error"]) if response["error"]
-      response["data"] ? response["data"] : response
+      response
     end
 
     # Do a 'post' request
@@ -26,7 +27,7 @@ module Skydrive
     def post url, options={}
       response = self.class.post(url, {:body => options}).parsed_response
       raise Skydrive::Error.new(response["error"]) if response["error"]
-      response["data"] ? response["data"] : response
+      response
     end
 
     # Do a 'move' request
@@ -35,7 +36,7 @@ module Skydrive
     def move url, options={}  
       response = self.class.move(url, {:body => options}).parsed_response
       raise Skydrive::Error.new(response["error"]) if response["error"]
-      response["data"] ? response["data"] : response
+      response
     end
 
     # Refresh the access token

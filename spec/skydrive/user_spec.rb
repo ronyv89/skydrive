@@ -1,6 +1,11 @@
 require 'spec_helper'
 describe Skydrive::User do
-  subject {Skydrive::User.new({"id" => "123456", "name" => "Rony Varghese"}.to_json)}
+  let(:user) { YAML.load(%{
+      id: "123456"
+      name: "Rony Varghese"
+    })
+  }
+  subject { Skydrive::User.new(skydrive_test_client, user)}
   it "should return the id of the user" do
     subject.id.should == "123456"
   end

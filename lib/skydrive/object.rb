@@ -1,8 +1,9 @@
 module Skydrive
   # The base class for all objects
   class Object
-    attr_reader :object
-    def initialize data
+    attr_reader :client, :object
+    def initialize client, data
+      @client = client
       @object = data
     end
 
