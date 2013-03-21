@@ -48,7 +48,9 @@ describe Skydrive::Folder do
   # before :each do 
   #   subject.stub(:files).and_return(folder_files)
   # end
-  it "should return the array of files/folders in the folder" do  
-    subject.files
+  it "should return the array of files/folders in the folder" do 
+    stub_request(:get, "https://apis.live.net/v5.0folder.8c8ce076ca27823f.8C8CE076CA27823F!142/files?access_token=access_token").
+         to_return(:status => 200, :body => folder_files.to_json, :headers => {}) 
+    # p subject.files
   end
 end

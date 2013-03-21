@@ -27,6 +27,7 @@ describe Skydrive::File do
     })
   }
   subject {Skydrive::File.new(skydrive_test_client, file)}
+  
   it "should be inherited from Skydrive::Object" do
     Skydrive::File::superclass.should == Skydrive::Object
   end

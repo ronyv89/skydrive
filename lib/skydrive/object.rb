@@ -16,7 +16,7 @@ module Skydrive
     # Info about the user who uploaded the file.
     # @return [Skydrive::User]
     def from
-      Skydrive::User.new(object["from"]) if object["from"]
+      Skydrive::User.new(client,  object["from"]) if object["from"]
     end
 
     # Name of the object

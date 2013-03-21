@@ -46,11 +46,10 @@ module Skydrive
       @access_token
     end
 
-    private
     # Return a Skdrive::Object sub class
     def object response
       if response.is_a? Array
-        return response.collect{ |object| "Skydrive::#{object["type"].capitalize}"}
+        return response.collect{ |object| "Skydrive::#{object["type"].capitalize}".constantize.new(self, object)}
       else
         return "Skydrive::#{response["type"].capitalize}"
       end

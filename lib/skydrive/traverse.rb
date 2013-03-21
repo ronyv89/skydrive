@@ -3,7 +3,7 @@ module Skydrive
   module Traverse
     
     def my_skydrive
-      Skydrive::Folder.new(get("/me/skydrive"))
+      Skydrive::Folder.new(self, get("/me/skydrive"))
     end
 
   end
