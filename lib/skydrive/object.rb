@@ -66,7 +66,7 @@ module Skydrive
     def parent_id
       object["parent_id"]
     end
-    
+
     # The object that contains permission info.
     # @return [Hash]
     def shared_with
@@ -85,10 +85,5 @@ module Skydrive
       object
     end
 
-    # The object that contains permission info.
-    # @return [Hash]
-    def shared_with
-      object["shared_with"]
-    end
   end
 end
