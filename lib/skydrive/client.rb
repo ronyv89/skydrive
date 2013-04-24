@@ -3,9 +3,8 @@ module Skydrive
   class Client
     attr_reader :access_token
     include HTTMultiParty
-    include Traverse
+    include Operations
     base_uri "https://apis.live.net/v5.0/"
-    format :json
 
     def initialize access_token
       @access_token = access_token
@@ -16,7 +15,11 @@ module Skydrive
     # @param [String] url the url to get
     # @param [Hash] options Additonal options to be passed
     def get url, options={}
-      response = self.class.get(url, {:query => options}).parsed_response
+      begin
+        response = self.class.get(url, {:query => options})
+      rescue Exception => e
+        p e
+      end
       raise Skydrive::Error.new(response["error"]) if response["error"]
       response
     end
@@ -33,7 +36,7 @@ module Skydrive
     # Do a 'move' request
     # @param [String] url the url to post
     # @param [Hash] options Additonal options to be passed
-    def move url, options={}  
+    def move url, options={}
       response = self.class.move(url, {:body => options}).parsed_response
       raise Skydrive::Error.new(response["error"]) if response["error"]
       response
@@ -53,6 +56,14 @@ module Skydrive
       else
         return "Skydrive::#{response["type"].capitalize}"
       end
+    end
+
+    private
+
+    def filtered_response response
+      raise Skydrive::Error.new(:code => "no_response_received", :message => "Request didn't make through or response not received"
+      raise Skydrive::Error.new(:code => "http_error_#{response.response.code}", :message => response.response.message) unless response.response.code == "200"
+
     end
 
   end
