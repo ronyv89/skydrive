@@ -11,6 +11,7 @@ module Skydrive
   require 'active_support/time'
   require 'skydrive/operations'
   require 'skydrive/oauth/client'
+  require 'skydrive/collection'
   require 'skydrive/client'
   require 'skydrive/object'
   require 'skydrive/user'
