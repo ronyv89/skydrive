@@ -1,4 +1,5 @@
 module Skydrive
+  # A user's audio file in SkyDrive.
   class Audio < Skydrive::Object
 
     # The size, in bytes, of the audio

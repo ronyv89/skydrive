@@ -1,4 +1,5 @@
 module Skydrive
-  class Photo
+  # A user's photo in SkyDrive.
+  class Photo < Skydrive::Object
   end
 end

@@ -25,7 +25,7 @@ describe Skydrive::Object do
     })
   }
 
-  subject {Skydrive::Object.new(skydrive_test_client, folder)}
+  subject { Skydrive::Object.new(skydrive_test_client, folder) }
 
   it "should return the id of the object" do
     subject.id.should == "folder.8c8ce076ca27823f.8C8CE076CA27823F!142"

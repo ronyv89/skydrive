@@ -85,5 +85,10 @@ module Skydrive
       object
     end
 
+    # Delete the object from Skydrive
+    def delete
+      client.delete("/#{id}")
+    end 
+
   end
 end

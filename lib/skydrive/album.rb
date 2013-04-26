@@ -1,4 +1,5 @@
 module Skydrive
+  # A user's album in SkyDrive
   class Album < Skydrive::Object
 
     # The total number of items in the album.
