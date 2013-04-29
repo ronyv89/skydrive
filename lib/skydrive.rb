@@ -22,5 +22,7 @@ module Skydrive
   require 'skydrive/album'
   require 'skydrive/audio'
   require 'skydrive/error'
+  require 'skydrive/comment'
+  require 'skydrive/notebook'
 
 end

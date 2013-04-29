@@ -45,12 +45,13 @@ describe Skydrive::Folder do
     })
   }
   subject { Skydrive::Folder.new(skydrive_test_client, folder) }
-  # before :each do 
-  #   subject.stub(:files).and_return(folder_files)
-  # end
-  it "should return the array of files/folders in the folder" do 
-    stub_request(:get, "https://apis.live.net/v5.0folder.8c8ce076ca27823f.8C8CE076CA27823F!142/files?access_token=access_token").
-         to_return(:status => 200, :body => folder_files.to_json, :headers => {}) 
-    # p subject.files
+  it "should return the collection of files/folders in the folder" do 
+    stub_request(:get, "https://apis.live.net/v5.0/folder.8c8ce076ca27823f.8C8CE076CA27823F!142/files?access_token=access_token"). to_return(:status => 200, :body => folder_files.to_json, :headers => {}) 
+    subject.files.should be_a Skydrive::Collection
+  end
+
+  it "should delete the folder" do
+    stub_request(:delete, "https://apis.live.net/v5.0/folder.8c8ce076ca27823f.8C8CE076CA27823F!142?access_token=access_token").to_return(:status => 204, :body => nil, :headers => {})
+    subject.delete.should be_true
   end
 end

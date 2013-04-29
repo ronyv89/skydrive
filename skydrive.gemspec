@@ -6,9 +6,9 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 Gem::Specification.new do |gem|
   gem.authors       = ["Rony Varghese"]
   gem.email         = ["rony@mobme.in"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = "Simple ruby client library for Skydrive cloud storage service with OAuth2"
+  gem.summary       = "Ruby client library for Microsoft Skydrive"
+  gem.homepage      = "https://github.com/ronyv89/skydrive"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

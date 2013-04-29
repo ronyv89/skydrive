@@ -26,16 +26,23 @@ module Skydrive
     end
 
     # Do a 'move' request
-    # @param [String] url the url to post
+    # @param [String] url the url to move
     # @param [Hash] options Additonal options to be passed
     def move url, options={}
       response = filtered_response(self.class.move(url, {:body => options}))
     end
 
     # Do a 'delete' request
-    # @param [String] url the url to post
+    # @param [String] url the url to delete
     def delete url
       response = filtered_response(self.class.delete(url))
+    end
+
+    # Do a put request
+    # @param [String] url the url to put
+    # @param [Hash] options Additonal options to be passed
+    def put url, options={}
+      response = filtered_response(self.class.put(url, {:body => options}))
     end
 
     # Refresh the access token
@@ -59,15 +66,25 @@ module Skydrive
     # Filter the response after checking for any errors
     def filtered_response response
       raise Skydrive::Error.new({"code" => "no_response_received", "message" => "Request didn't make through or response not received"}) unless response
-      raise Skydrive::Error.new("code" => "http_error_#{response.response.code}", "message" => response.response.message) unless response.response.code == "200"
-      raise Skydrive::Error.new(response["error"]) if response["error"]
-      filtered_response = response.parsed_response
-      raise Skydrive::Error.new(filtered_response["error"]) if filtered_response["error"]
-      if filtered_response["data"]
-        return Skydrive::Collection.new(self, filtered_response["data"])
+      if response.success?
+        filtered_response = response.parsed_response
+        if response.response.code == "200"
+          raise Skydrive::Error.new(filtered_response["error"]) if filtered_response["error"]
+          if filtered_response["data"]
+            return Skydrive::Collection.new(self, filtered_response["data"])
+          elsif filtered_response["id"].match /^comment\..+/
+            return Skydrive::Comment.new(self, filtered_response)
+          else
+            return "Skydrive::#{filtered_response["type"].capitalize}".constantize.new(self, filtered_response)
+          end
+        else
+          return true
+        end
       else
-        return "Skydrive::#{filtered_response["type"].capitalize}".constantize.new(self, filtered_response)
+        raise Skydrive::Error.new("code" => "http_error_#{response.response.code}", "message" => response.response.message)
       end
+      
+      
     end
 
   end

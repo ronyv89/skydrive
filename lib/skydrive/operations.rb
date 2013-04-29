@@ -55,5 +55,15 @@ module Skydrive
       response = delete("/#{object_id}")
     end
 
+    # Create a new folder
+    # @param [String] path the path where the new folder should be created
+    # @param [Hash] options the additional parameters to be passed
+    # @option options [String] :name required, the name of the new folder
+    # @option options [String] :description the description about the folder
+    # @return [Skydrive::Folder] the new folder
+    def create_folder path, options={}
+      response = post("/#{path}", options)
+    end
+
   end
 end
