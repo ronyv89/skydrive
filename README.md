@@ -1,6 +1,6 @@
 # Skydrive
 
-TODO: Write a gem description
+Simple client library for Microsoft Skydrive API with OAuth2 authentication
 
 ## Installation
 
