@@ -85,8 +85,6 @@ module Skydrive
       else
         raise Skydrive::Error.new("code" => "http_error_#{response.response.code}", "message" => response.response.message)
       end
-      
-      
     end
 
   end
