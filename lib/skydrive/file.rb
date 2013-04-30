@@ -31,5 +31,13 @@ module Skydrive
     def source
       object["source"]
     end
+
+    # Download the file
+    def download
+      url = client.get("/#{id}/content", :download => true, :suppress_redirects => true)["location"]
+      uri = URI(url)
+      response = HTTParty.get("http://#{uri.host}#{uri.path}?#{uri.query}")
+      response.parsed_response
+    end
   end
 end

@@ -72,6 +72,8 @@ module Skydrive
           raise Skydrive::Error.new(filtered_response["error"]) if filtered_response["error"]
           if filtered_response["data"]
             return Skydrive::Collection.new(self, filtered_response["data"])
+          elsif filtered_response["location"]
+            return filtered_response
           elsif filtered_response["id"].match /^comment\..+/
             return Skydrive::Comment.new(self, filtered_response)
           else
