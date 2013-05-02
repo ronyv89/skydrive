@@ -8,10 +8,24 @@ module Skydrive
       response = get("/me/skydrive")
     end
 
+    # Get the home folder of a particular user
+    # @param [String] user_id ID of the user
+    # @return [Skydrive::Folder]
+    def user_skydrive user_id
+      response = get("/#{user_id}/skydrive")
+    end
+
     # Your camera_roll folder
     # @return [Skydrive::Folder]
     def my_camera_roll
       response = get("/me/skydrive/camera_roll")
+    end
+
+    # Get the camera_roll folder of a particular user
+    # @param [String] user_id ID of the user
+    # @return [Skydrive::Folder]
+    def user_camera_roll user_id
+      response = get("/#{user_id}/camera_roll")
     end
 
     # Your documents
@@ -20,10 +34,24 @@ module Skydrive
       response = get("/me/skydrive/my_documents")
     end
 
+    # User's documents
+    # @param [String] user_id ID of the user
+    # @return [Skydrive::Folder]
+    def user_documents user_id
+      response = get("/#{user_id}/skydrive/my_documents")
+    end
+
     # Your default album
-    # @return [Skydrive::Photos]
+    # @return [Skydrive::Album]
     def my_photos
       response = get("/me/skydrive/my_photos")
+    end
+
+    # User's photos
+    # @param [String] user_id ID of the user
+    # @return [Skydrive::Folder]
+    def user_photos user_id
+      response = get("/#{user_id}/skydrive/my_photos")
     end
 
     # Your public documents
@@ -32,21 +60,48 @@ module Skydrive
       response = get("/me/skydrive/public_documents")
     end
 
+    # User's public documents
+    # @param [String] user_id ID of the user
+    # @return [Skydrive::Folder]
+    def user_public_documents user_id
+      response = get("/#{user_id}/skydrive/public_documents")
+    end
+
     # Your shared items
     # @return [Skydrive::Collection]
     def my_shared_stuff
       response = get("/me/skydrive/shared")
     end
 
-    # Your recent documents
+    # User's shared items
     # @return [Skydrive::Collection]
-    def recent_documents
+    def user_shared_stuff
+      response = get("/#{id}/skydrive/shared")
+    end
+
+    # Your recent documents
+    # @param [String] user_id ID of the user
+    # @return [Skydrive::Collection]
+    def my_recent_documents
       response = get("/me/skydrive/recent_docs")
+    end
+
+    # User's recent documents
+    # @param [String] user_id ID of the user
+    # @return [Skydrive::Collection]
+    def user_recent_documents user_id
+      response = get("/#{user_id}/skydrive/recent_docs")
     end
 
     # Your total and remaining storage quota
     # @return [Hash] contains keys quota and available
-    def storage_quota
+    def my_storage_quota
+      response = get("/me/skydrive/quota")
+    end
+
+    # User's total and remaining storage quota
+    # @return [Hash] contains keys quota and available
+    def user_storage_quota
       response = get("/me/skydrive/quota")
     end
 
@@ -65,6 +120,19 @@ module Skydrive
       response = put("/#{object_id}", options)
     end
 
+    alias :update_folder :update_skydrive_object
+    alias :update_album :update_skydrive_object
+    alias :update_file :update_skydrive_object
+    alias :update_video :update_skydrive_object
+    alias :update_audio :update_skydrive_object
+    alias :update_photo :update_skydrive_object
+
+    alias :delete_folder :delete_skydrive_object
+    alias :delete_album :delete_skydrive_object
+    alias :delete_file :delete_skydrive_object
+    alias :delete_video :delete_skydrive_object
+    alias :delete_audio :delete_skydrive_object
+    alias :delete_photo :delete_skydrive_object
     # Create a new folder
     # @param [String] path the path where the new folder should be created
     # @param [Hash] options the details of the new folder

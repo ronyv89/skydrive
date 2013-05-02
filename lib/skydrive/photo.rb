@@ -1,6 +1,6 @@
 module Skydrive
   # A user's photo in SkyDrive.
-  class Photo < Skydrive::Object
+  class Photo < Skydrive::File
     # The link that can be used to download the photo
     # @return [String]
     def download_link

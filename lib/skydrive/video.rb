@@ -1,6 +1,6 @@
 module Skydrive
   # A user's video in SkyDrive.
-  class Video < Skydrive::Object
+  class Video < Skydrive::File
     # The link that can be used to download the video file
     # @return [String]
     def download_link

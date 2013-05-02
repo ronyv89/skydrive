@@ -20,12 +20,6 @@ module Skydrive
       object["comments_enabled"]
     end
 
-    # A value that indicates whether this file can be embedded
-    # @return [Boolean]
-    def is_embeddable
-      object["is_embeddable"]
-    end
-
     # The URL to use to download the file from SkyDrive
     # @return [String]
     def source
@@ -44,6 +38,6 @@ module Skydrive
       response = HTTParty.get("http://#{uri.host}#{uri.path}?#{uri.query}")
       response.parsed_response
     end
-    
+
   end
 end

@@ -90,5 +90,11 @@ module Skydrive
       client.delete("/#{id}")
     end 
 
+    # A value that indicates whether this object can be embedded
+    # @return [Boolean]
+    def is_embeddable?
+      object["is_embeddable"]
+    end
+
   end
 end

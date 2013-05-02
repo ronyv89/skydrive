@@ -1,6 +1,6 @@
 module Skydrive
   # A user's audio file in SkyDrive.
-  class Audio < Skydrive::Object
+  class Audio < Skydrive::File
 
     # The size, in bytes, of the audio
     # @return [Integer]
@@ -18,12 +18,6 @@ module Skydrive
     # @return [Boolean]
     def comments_enabled
       object["comments_enabled"]
-    end
-
-    # A value that indicates whether this audio can be embedded
-    # @return [Boolean]
-    def is_embeddable
-      object["is_embeddable"]
     end
 
     # The URL to use to download the audio from SkyDrive
@@ -86,5 +80,6 @@ module Skydrive
       response = HTTParty.get("http://#{uri.host}#{uri.path}?#{uri.query}")
       response.parsed_response
     end
+
   end
 end

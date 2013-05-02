@@ -20,7 +20,7 @@ module Skydrive
     end
 
     # User's default album
-    # @return [Skydrive::Photos]
+    # @return [Skydrive::Album]
     def photos
       response = get("/#{id}/skydrive/my_photos")
     end
