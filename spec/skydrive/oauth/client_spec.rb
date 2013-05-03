@@ -7,7 +7,7 @@ describe Skydrive::Oauth::Client do
       @uri = URI.parse(subject.authorize_url)
       @uri_params = CGI.parse(@uri.query)
     end
-    
+
     it "should have the correct request token path" do
       @uri.path.should == "/oauth20_authorize.srf"
     end
@@ -31,15 +31,15 @@ describe Skydrive::Oauth::Client do
           "code"          =>  "code",
           "grant_type"    =>  "authorization_code",
           "redirect_uri"  =>  "http://callback_demo"
-        }, 
+        },
         :headers  => {
           'Accept'        =>  '*/*',
           'Content-Type'  =>  'application/x-www-form-urlencoded',
-          'User-Agent'    =>  'Ruby'
+          'User-Agent'    =>  'Faraday v0.8.7'
         }
       ).to_return(
         :status   => 200, :body => {
-          "token_type"            =>  "bearer", 
+          "token_type"            =>  "bearer",
           "expires_in"            =>  3600,
           "scope"                 =>  "wl.skydrive_update,wl.offline_access",
           "access_token"          =>  "access_token",

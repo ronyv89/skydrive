@@ -1,7 +1,7 @@
 module Skydrive
   # The folder object
   class Folder < Skydrive::Object
-    
+
     # Items in the folder
     # @param [Hash] options Additional parameters
     # @option options [Integer] :limit the maximum number of results to return

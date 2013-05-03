@@ -120,6 +120,7 @@ module Skydrive
       response = put("/#{object_id}", options)
     end
 
+
     alias :update_folder :update_skydrive_object
     alias :update_album :update_skydrive_object
     alias :update_file :update_skydrive_object
