@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Skydrive Ruby by ronyv89</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>Skydrive Ruby</h1>
+        <p>Skydrive API client for ruby</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/ronyv89/skydrive" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/ronyv89/skydrive/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/ronyv89/skydrive/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h1>Skydrive</h1>
+
+<p>Simple client library for Microsoft Skydrive API with OAuth2 authentication</p>
+
+<h2>Installation</h2>
+
+<p>Add this line to your application's Gemfile:</p>
+
+<pre><code>gem 'skydrive'
+</code></pre>
+
+<p>And then execute:</p>
+
+<pre><code>$ bundle
+</code></pre>
+
+<p>Or install it yourself as:</p>
+
+<pre><code>$ gem install skydrive
+</code></pre>
+
+<h2>Usage</h2>
+
+<h3>OAuth2 Authentication</h3>
+
+<p>Skydrive uses OAuth2 authentication. First you will have to initialize a Skydrive::Oauth::Client object with the client id, client secret, callback url and scopes <a href="http://msdn.microsoft.com/en-us/library/live/hh243646.aspx">(explained here)</a></p>
+
+<pre><code>oauth_client = Skydrive::Oauth::Client.new("your_client_id", "your_client_secret", "http://yourcallbackurl", "wl.skydrive_update,wl.offline_access")
+</code></pre>
+
+<p>Obtain the authentication url </p>
+
+<pre><code>auth_url = oauth_client.authorize_url
+</code></pre>
+
+<p>Redirect the user to the above obtained auth_url. After user gives access to your app, they will be redirected to the callback url with a 'code' parameter. Extract this code and get the access token by invoking the following method</p>
+
+<pre><code>access_token = oauth_client.get_access_token("the_extracted_code")
+</code></pre>
+
+<h3>Instantiate a client</h3>
+
+<p>After getting the access token instantiate the Skydrive client</p>
+
+<pre><code>client = Skydrive::Client.new(:access_token =&gt; "your_acess_token")
+</code></pre>
+
+<h2>Contributing</h2>
+
+<ol>
+<li>Fork it</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Added some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create new Pull Request</li>
+</ol>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/ronyv89">ronyv89</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
