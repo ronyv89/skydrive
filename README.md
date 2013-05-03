@@ -63,7 +63,7 @@ Or install it yourself as:
 ## Todo
 
 1. File upload
-
+2. More specs
 
 ## Contributing
 
