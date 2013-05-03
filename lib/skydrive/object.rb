@@ -96,5 +96,17 @@ module Skydrive
       object["is_embeddable"]
     end
 
+    # Comments associated with the object
+    # @return [Skydrive::Collection]
+    def comments
+      client.get("/#{id}/comments")
+    end
+
+    # Make a comment about the object
+    # @params [Hash] options
+    # @option options [String] :message The comment 
+    def comment options={}
+      client.post("/#{id}/comments", options)
+    end
   end
 end

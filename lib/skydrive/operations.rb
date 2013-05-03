@@ -152,5 +152,26 @@ module Skydrive
       response = post("/me/albums", options)
     end
 
+    # Get comments associated with an object
+    # @param [String] object_id The ID of the object
+    # @return [Skydrive::Collection]
+    def object_comments object_id
+      response = get("/#{object_id}/comments")
+    end
+
+    # Delete a comment
+    # @param [String] comment_id TD od the comment
+    def delete_comment comment_id
+      response = delete("/#{comment_id}")
+    end
+
+    # Comment about an object
+    # @param [String] object_id ID of the object
+    # @param [Hash] options
+    # @options options [String] :message The comment message
+    def create_comment object_id, options={}
+      response = post("/#{object_id}/comments", options)
+    end
+
   end
 end

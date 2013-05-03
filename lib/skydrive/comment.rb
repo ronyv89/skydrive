@@ -7,9 +7,15 @@ module Skydrive
       object["message"]
     end
 
+    # Always return 'comment'
+    # @return [String]
     def type
       "comment"
     end
 
+    # Delete the comment
+    def delete
+      client.delete("/#{id}")
+    end
   end
 end
