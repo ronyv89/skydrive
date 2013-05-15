@@ -48,7 +48,7 @@ module Skydrive
     # Get the acting user
     # @return [Hash]
     def me
-      response = JSON.load(self.class.get("/me"))
+      response = JSON.load(self.class.get("/me").parsed_response)
     end
 
     # Refresh the access token
