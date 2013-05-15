@@ -1,12 +1,6 @@
 module Skydrive
   # The basic operations
   module Operations
-
-    # The acting user
-    # @return [Skydrive::User]
-    def me
-      response = get("/me")
-    end
     
     # Your home folder
     # @return [Skydrive::Folder]

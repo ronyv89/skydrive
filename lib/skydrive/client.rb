@@ -45,6 +45,12 @@ module Skydrive
       response = filtered_response(self.class.put(url, {:body => options}))
     end
 
+    # Get the acting user
+    # @return [Hash]
+    def me
+      response = JSON.load(self.class.get("/me"))
+    end
+
     # Refresh the access token
     def refresh_access_token!
       @access_token = access_token.refresh!
