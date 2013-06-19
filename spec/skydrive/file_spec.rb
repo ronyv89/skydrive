@@ -37,4 +37,44 @@ describe Skydrive::File do
       subject.from.should be_a(Skydrive::User)
     end
   end
+
+  describe '#size' do
+    it "should return the size of the file in bytes" do
+      subject.size.should == file["size"]
+    end
+  end
+
+  describe '#comments_count' do
+    it "should return the count of comments associated with the file" do
+      subject.comments_count.should == file["comments_count"]
+    end
+  end
+
+  describe '#comments_enabled?' do
+    it "should return whether comments are enabled for the file" do 
+      subject.should be_comments_enabled
+    end
+  end
+
+  describe '#source' do 
+    it "should return the URL to use to download the file from SkyDrive" do
+      subject.source.should == file["source"]
+    end
+  end
+
+  describe '#download_link' do
+    it "should give the download link for the file" do
+      stub_request(:get, "https://apis.live.net/v5.0/file.22688711f5410e6c.22688711F5410E6C!942/content?access_token=access_token&download=true&suppress_redirects=true").to_return(:status => 200, :body => {"location" => "http://dummylocation.com"}.to_json, :headers => {})
+      subject.download_link.should == "http://dummylocation.com"
+    end
+  end
+
+  describe '#download' do
+    it "should download the file" do
+      stub_request(:get, "https://apis.live.net/v5.0/file.22688711f5410e6c.22688711F5410E6C!942/content?access_token=access_token&download=true&suppress_redirects=true").to_return(:status => 200, :body => {"location" => "http://dummylocation.com/path?dummy_param=value"}.to_json, :headers => {})
+      stub_request(:get, "http://dummylocation.com/path?dummy_param=value").
+         to_return(:status => 200, :body => "\322\204\371\225Q", :headers => {})
+      subject.download.should == "\322\204\371\225Q"
+    end 
+  end
 end

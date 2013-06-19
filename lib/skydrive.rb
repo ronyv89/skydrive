@@ -21,6 +21,7 @@ module Skydrive
   require 'skydrive/photo'
   require 'skydrive/album'
   require 'skydrive/audio'
+  require 'skydrive/video'
   require 'skydrive/error'
   require 'skydrive/comment'
   require 'skydrive/notebook'

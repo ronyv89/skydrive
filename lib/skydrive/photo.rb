@@ -14,12 +14,7 @@ module Skydrive
       object["tags_enabled"]
     end
 
-    # The link that can be used to download the photo
-    # @return [String]
-    def download_link
-      url = client.get("/#{id}/content", :download => true, :suppress_redirects => true)["location"]
-    end
-
+    
     # A URL of the photo's picture.
     # @return [String]
     def picture
@@ -90,13 +85,6 @@ module Skydrive
     # @return [Integer]
     def exposure_denominator
       object["exposure_denominator"]
-    end
-
-    # Download the photo
-    def download
-      uri = URI(download_link)
-      response = HTTParty.get("http://#{uri.host}#{uri.path}?#{uri.query}")
-      response.parsed_response
     end
 
   end
