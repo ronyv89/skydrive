@@ -16,7 +16,7 @@ module Skydrive
 
     # A value that indicates whether comments are enabled for the file
     # @return [Boolean]
-    def comments_enabled
+    def comments_enabled?
       object["comments_enabled"]
     end
 

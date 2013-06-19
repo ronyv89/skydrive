@@ -103,7 +103,7 @@ module Skydrive
     end
 
     # Make a comment about the object
-    # @params [Hash] options
+    # @param [Hash] options
     # @option options [String] :message The comment 
     def comment options={}
       client.post("/#{id}/comments", options)

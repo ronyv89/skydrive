@@ -169,7 +169,7 @@ module Skydrive
     # Comment about an object
     # @param [String] object_id ID of the object
     # @param [Hash] options
-    # @options options [String] :message The comment message
+    # @option options [String] :message The comment message
     def create_comment object_id, options={}
       response = post("/#{object_id}/comments", options)
     end
