@@ -31,12 +31,12 @@ describe Skydrive::Object do
     subject.id.should == "folder.8c8ce076ca27823f.8C8CE076CA27823F!142"
   end
 
-  it "should return the owner user of the object" do
-    subject.from.should be_a(Skydrive::User)
-  end
-
   it "should return the name of the object" do
     subject.name.should == "My Sample Folder in Album 1"
+  end
+
+  it "should return the owner user of the object" do
+    subject.from.should be_a(Skydrive::User)
   end
 
   it "should return the description of the object" do
@@ -79,4 +79,63 @@ describe Skydrive::Object do
     subject.to_hash.should == folder
   end
 
+  it "should delete the object" do
+    stub_request(:delete, "https://apis.live.net/v5.0/folder.8c8ce076ca27823f.8C8CE076CA27823F!142?access_token=access_token").to_return(:status => 204, :body => "", :headers => {})
+    subject.delete.should == true
+  end
+
+  describe '#comments' do
+
+    let :comments do
+      JSON.load(%{{
+        "data": [
+          {
+            "id": "comment.22688711f5410e6c.22688711f0410e6c!818.22688711F5410E6C!979",
+            "from": {
+              "name": "Roberto Tamburello", 
+              "id": "8c8ce076ca27823f"
+            }, 
+            "message": "A lighthouse built on some rocks.", 
+            "created_time": "2011-04-21T23:21:28+0000"
+          }
+        ]
+      }})
+    end
+    before :each do
+      stub_request(:get, "https://apis.live.net/v5.0/folder.8c8ce076ca27823f.8C8CE076CA27823F!142/comments?access_token=access_token").to_return(:status => 200, :body => comments.to_json, :headers => {})
+    end 
+
+    it "should return a collection" do
+      subject.comments.should be_a Skydrive::Collection
+    end
+
+    it "should get the comments associated with the object" do
+      subject.comments.items.should each { |item|
+        item.should be_a Skydrive::Comment
+      }
+    end
+  end
+
+  describe '#comment' do
+    let :comment do
+      JSON.load(%{
+        {
+          "id": "comment.22688711f5410e6c.22688711f0410e6c!818.22688711F5410E6C!979",
+          "from": {
+            "name": "Roberto Tamburello", 
+            "id": "8c8ce076ca27823f"
+          }, 
+          "message": "A lighthouse built on some rocks.", 
+          "created_time": "2011-04-21T23:21:28+0000"
+        } 
+      })
+
+    end
+    it 'should add a comment for the object' do
+      stub_request(:post, "https://apis.live.net/v5.0/folder.8c8ce076ca27823f.8C8CE076CA27823F!142/comments?access_token=access_token").with({:messge => "hello"}).to_return(:status => 200, :body => comment.to_json, :headers => {})
+      subject.comment.should be_a Skydrive::Comment
+    end
+    
+  end
+  
 end
