@@ -13,14 +13,19 @@ describe Skydrive::Comment do
     })
   end
 
-  subject {skydrive_test_client}
-
-  before :each do
-    stub_request(:get, "https://apis.live.net/v5.0/comment.22688711f5410e6c.22688711f0410e6c!818.22688711F5410E6C!979?access_token=access_token").to_return(:status => 200, :body => comment.to_json, :headers => {})
-    @comment = skydrive_test_client.get("/comment.22688711f5410e6c.22688711f0410e6c!818.22688711F5410E6C!979")
-  end
+  subject { Skydrive::Comment.new(skydrive_test_client, comment)}
 
   it "should return the message associated with the comment" do
-    @comment.message.should  eql "A lighthouse built on some rocks."
+    subject.message.should  eql "A lighthouse built on some rocks."
+  end
+
+  it "should return comment as the type" do
+    subject.type.should == "comment"
+  end
+
+  it "should delete the comment" do
+    stub_request(:delete, "https://apis.live.net/v5.0/comment.22688711f5410e6c.22688711f0410e6c!818.22688711F5410E6C!979?access_token=access_token").
+         to_return(:status => 204, :body => "", :headers => {})
+    subject.delete.should be_true
   end
 end
