@@ -35,7 +35,7 @@ describe Skydrive::Oauth::Client do
         :headers  => {
           'Accept'        =>  '*/*',
           'Content-Type'  =>  'application/x-www-form-urlencoded',
-          'User-Agent'    =>  'Faraday v0.8.7'
+          'User-Agent'    =>  "Faraday v#{Gem.loaded_specs['faraday'].version}"
         }
       ).to_return(
         :status   => 200, :body => {
