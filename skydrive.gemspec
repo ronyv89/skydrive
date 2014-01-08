@@ -19,7 +19,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'httparty', '>= 0.11.0'
   gem.add_dependency 'activesupport'
   gem.add_dependency 'httmultiparty'
-  gem.add_dependency 'oauth2'
+  gem.add_dependency 'oauth2', ">= 0.9.2"
   gem.add_development_dependency "rspec"
   gem.add_development_dependency "rake"
   gem.add_development_dependency "rb-inotify"
