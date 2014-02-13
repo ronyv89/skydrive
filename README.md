@@ -34,14 +34,14 @@ Or install it yourself as:
 
   If you have already stored the access_token details somewhere, you can instantiate the access token without having to authorize again. But this might require you to store the refresh token(if scope 'wl.offline_access' has been requested) as well.
 
-    access_token = oauth_client..get_access_token_from_hash("access_token", {:refresh_token => "refresh_token", :expires_at => 1234567})
+    access_token = oauth_client.get_access_token_from_hash("access_token", {:refresh_token => "refresh_token", :expires_at => 1234567})
 
 
 ### Instantiate a client
 
   After getting the access token instantiate the Skydrive client
 
-    client = Skydrive::Client.new(:access_token => access_token)
+    client = Skydrive::Client.new(access_token)
 
 ## Usage
 
