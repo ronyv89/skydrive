@@ -1,7 +1,7 @@
 module Skydrive
   # The basic operations
   module Operations
-    
+
     # Your home folder
     # @return [Skydrive::Folder]
     def my_skydrive
@@ -120,6 +120,11 @@ module Skydrive
       response = put("/#{object_id}", options)
     end
 
+    # Get an object by its id
+    # @param [String] id The id of the object you want
+    def get_skydrive_object_by_id id
+      response = get("/#{id}")
+    end
 
     alias :update_folder :update_skydrive_object
     alias :update_album :update_skydrive_object
