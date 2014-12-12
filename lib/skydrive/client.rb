@@ -41,8 +41,8 @@ module Skydrive
     # Do a put request
     # @param [String] url the url to put
     # @param [Hash] options Additonal options to be passed
-    def put url, options={}
-      response = filtered_response(self.class.put(url, {:body => options}))
+    def put url, body=nil, options={}
+      response = filtered_response(self.class.put(url, {:body => body, :query => options}))
     end
 
     # Get the acting user
@@ -82,6 +82,8 @@ module Skydrive
             return filtered_response
           elsif filtered_response["id"].match /^comment\..+/
             return Skydrive::Comment.new(self, filtered_response)
+          elsif filtered_response["id"].match /^file\..+/
+            return Skydrive::File.new(self, filtered_response) 
           else
             return "Skydrive::#{filtered_response["type"].capitalize}".constantize.new(self, filtered_response)
           end

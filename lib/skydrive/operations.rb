@@ -179,5 +179,15 @@ module Skydrive
       response = post("/#{object_id}/comments", options)
     end
 
+    # Upload a file
+    # @param [String] folder_path Either 'me/skydrive' or FOLDER_ID(id of the parent folder)
+    # @param [String] filename Name of the new file
+    # @param [File] The actual file to be uploaded
+    # @param [Hash] options Any additional options to be passed
+    # @option options [Boolean] :overwrite whether to overwrite the file
+    # @return [Skydrive::File] the created file with minimum details
+    def upload folder_path, filename, file, options={}
+      response = put("/#{folder_path}/files/#{filename}", file.read, options)
+    end
   end
 end
