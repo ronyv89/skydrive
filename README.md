@@ -59,11 +59,11 @@ Or install it yourself as:
 1. Every thing is an object. For eg: Skydrive::Folder, Skydrive::File
 2. I have introduced a new object Skydrive::Collection when the result contains multiple type objects
 3. Downloading files have been enabled
+4. UPDATE! Uploading enabled too!!!!
 
 ## Todo
 
-1. File upload
-2. More specs
+1. More specs
 
 ## Contributing
 
