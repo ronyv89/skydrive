@@ -74,7 +74,7 @@ module Skydrive
       raise Skydrive::Error.new({"code" => "no_response_received", "message" => "Request didn't make through or response not received"}) unless response
       if response.success?
         filtered_response = response.parsed_response
-        if response.response.code == "200"
+        if response.response.code =~ /(201|200)/
           raise Skydrive::Error.new(filtered_response["error"]) if filtered_response["error"]
           if filtered_response["data"]
             return Skydrive::Collection.new(self, filtered_response["data"])            
