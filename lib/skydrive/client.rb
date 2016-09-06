@@ -91,7 +91,8 @@ module Skydrive
           return true
         end
       else
-        raise Skydrive::Error.new("code" => "http_error_#{response.response.code}", "message" => response.response.message)
+        message = response['error']['message'] rescue response.response.message
+        raise Skydrive::Error.new("code" => "http_error_#{response.response.code}", "message" => message)
       end
     end
 
