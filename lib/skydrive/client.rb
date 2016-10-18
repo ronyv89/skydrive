@@ -41,8 +41,8 @@ module Skydrive
     # Do a put request
     # @param [String] url the url to put
     # @param [Hash] options Additonal options to be passed
-    def put url, body=nil, options={}
-      response = filtered_response(self.class.put(url, { :body => body, :query => options }))
+    def put url, body=nil, options={}, headers={}
+      response = filtered_response(self.class.put(url, { :body => body, :query => options, :headers => headers }))
     end
 
     # Get the acting user
