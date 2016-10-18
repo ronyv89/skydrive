@@ -20,7 +20,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'activesupport'
   gem.add_dependency 'httmultiparty'
   gem.add_dependency 'oauth2', ">= 0.9.2"
-  gem.add_dependency 'ruby-filemagic', '~> 0.7'
+  gem.add_dependency 'mimemagic', '~> 0.3'
   gem.add_development_dependency "rspec"
   gem.add_development_dependency "rake"
   gem.add_development_dependency "rb-inotify"
