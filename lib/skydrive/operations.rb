@@ -1,3 +1,5 @@
+require 'filemagic'
+
 module Skydrive
   # The basic operations
   module Operations
@@ -187,7 +189,9 @@ module Skydrive
     # @option options [Boolean] :overwrite whether to overwrite the file
     # @return [Skydrive::File] the created file with minimum details
     def upload folder_path, filename, file, options={}
-      response = put("/#{folder_path}/files/#{filename}", file.read, options, headers: {'content-type' => ''})
+      content_type = FileMagic.new(FileMagic::MAGIC_MIME).file(file.path) || ''
+      content_type = content_type.slice(';').first
+      response = put("/#{folder_path}/files/#{filename}", file.read, options, {'content-type' => content_type})
     end
   end
 end
